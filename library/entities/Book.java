@@ -37,7 +37,7 @@ public class Book implements Serializable {
 		return iD;
 	}
 
-	public String gEtTiTlE() {
+	public String getTitle() {
 		return tItLe;
 	}
 
