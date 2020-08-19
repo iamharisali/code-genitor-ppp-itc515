@@ -2,7 +2,7 @@ package library.fixbook;
 import java.util.Scanner;
 
 
-public class fixbookUi {
+public class FixBookUi {
 
 	public static enum uiState { INITIALISED, READY, FIXING, COMPLETED };
 
