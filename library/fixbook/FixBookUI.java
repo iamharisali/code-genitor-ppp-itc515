@@ -6,12 +6,12 @@ public class FixBookUI {
 
 	public static enum UiState { INITIALISED, READY, FIXING, COMPLETED };
 
-	private fixbookControl control;
+	private FixBookControl control;
 	private Scanner input;
 	private UiState state;
 
 	
-	public FixBookUI(fixbookControl control) {
+	public FixBookUI(FixBookControl control) {
 		this.control = control;
 		input = new Scanner(System.in);
 		state = UiState.INITIALISED;
