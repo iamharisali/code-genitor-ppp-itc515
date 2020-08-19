@@ -32,7 +32,7 @@ public class FixBookControl {
 		if (!state.equals(ControlState.READY)) 
 			throw new RuntimeException("FixBookControl: cannot call bookScanned except in READY state");
 			
-		currentBook = library.gEt_BoOk(bookId);
+		currentBook = library.getBook(bookId);
 		
 		if (currentBook == null) {
 			Ui.dIsPlAy("Invalid bookId");
@@ -53,7 +53,7 @@ public class FixBookControl {
 			throw new RuntimeException("FixBookControl: cannot call fixBook except in FIXING state");
 			
 		if (mUsT_FiX) 
-			library.RePaIr_BoOk(currentBook);
+			library.repairBook(currentBook);
 		
 		currentBook = null;
 		Ui.setState(FixBookUI.uiState.READY);
