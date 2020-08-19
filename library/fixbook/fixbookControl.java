@@ -13,7 +13,7 @@ public class FixBookControl {
 
 
 	public fixbookControl() {
-		this.library = Library.GeTiNsTaNcE();
+		this.library = Library.getInstance();
 		state = controlState.INITIALISED;
 	}
 	
