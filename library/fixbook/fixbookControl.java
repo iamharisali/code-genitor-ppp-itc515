@@ -18,7 +18,7 @@ public class FixBookControl {
 	}
 	
 	
-	public void SetUi( FixBookUI ui) {
+	public void setUi( FixBookUI ui) {
 		if (!state.equals(controlState.INITIALISED)) 
 			throw new RuntimeException("FixBookControl: cannot call setUI except in INITIALISED state");
 			
@@ -28,7 +28,7 @@ public class FixBookControl {
 	}
 
 
-	public void BoOk_ScAnNeD(int BoOkId) {
+	public void getBookScanned(int BoOkId) {
 		if (!state.equals(controlState.READY)) 
 			throw new RuntimeException("FixBookControl: cannot call bookScanned except in READY state");
 			
