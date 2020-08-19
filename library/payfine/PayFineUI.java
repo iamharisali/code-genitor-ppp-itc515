@@ -2,7 +2,7 @@ package library.payfine;
 import java.util.Scanner;
 
 
-public class PayFineUI {
+public class payfineUI {
 
 
 	public static enum uI_sTaTe { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
@@ -12,7 +12,7 @@ public class PayFineUI {
 	private uI_sTaTe StAtE;
 
 	
-	public PayFineUI(pAY_fINE_cONTROL control) {
+	public payfineUI(pAY_fINE_cONTROL control) {
 		this.CoNtRoL = control;
 		input = new Scanner(System.in);
 		StAtE = uI_sTaTe.INITIALISED;
