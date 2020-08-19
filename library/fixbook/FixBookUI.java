@@ -34,7 +34,7 @@ public class FixBookUI {
 			case READY:
 				String BoOk_EnTrY_StRiNg = input("Scan Book (<enter> completes): ");
 				if (BoOk_EnTrY_StRiNg.length() == 0) 
-					control.SCannING_COMplete();
+					control.getScanningComplete();
 				
 				else {
 					try {
