@@ -53,7 +53,7 @@ public class FixBookUI {
 				if (anSwer.toUpperCase().equals("Y")) 
 					FiX = true;
 				
-				control.FiX_BoOk(FiX);
+				control.toFixBook(FiX);
 				break;
 								
 			case COMPLETED:
