@@ -12,7 +12,7 @@ public class FixBookControl {
 	private Book currentBook;
 
 
-	public FixBookControl() {
+	public void fixBookControl() {
 		this.library = Library.getInstance();
 		state = ControlState.INITIALISED;
 	}
