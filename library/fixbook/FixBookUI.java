@@ -38,8 +38,8 @@ public class FixBookUI {
 				
 				else {
 					try {
-						int BoOk_Id = Integer.valueOf(bookEntryString).intValue();
-						control.getBookScanned(BoOk_Id);
+						int bookId = Integer.valueOf(bookEntryString).intValue();
+						control.getBookScanned(bookId);
 					}
 					catch (NumberFormatException e) {
 						output("Invalid bookId");
