@@ -4,11 +4,11 @@ import java.util.Scanner;
 
 public class FixBookUI {
 
-	public static enum uiState { INITIALISED, READY, FIXING, COMPLETED };
+	public static enum UiState { INITIALISED, READY, FIXING, COMPLETED };
 
 	private fixbookControl CoNtRoL;
 	private Scanner InPuT;
-	private uiState state;
+	private UiState state;
 
 	
 	public fixbookUi(fixbookControl CoNtRoL) {
@@ -19,7 +19,7 @@ public class FixBookUI {
 	}
 
 
-	public void setState(uiState stateSet) {
+	public void setState(UiState stateSet) {
 		this.state = stateSet;
 	}
 
