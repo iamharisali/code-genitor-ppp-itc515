@@ -3,7 +3,7 @@ import library.entities.Book;
 import library.entities.Library;
 import library.entities.Loan;
 
-public class rETURN_bOOK_cONTROL {
+public class ReturnBookControl {
 
 	private ReturnBookUI Ui;
 	private enum ControlState { INITIALISED, READY, INSPECTING };
