@@ -5,8 +5,8 @@ import library.entities.Library;
 public class FixBookControl {
 	
 	private FixBookUI Ui;
-	private enum controlState { INITIALISED, READY, FIXING };
-	private controlState state;
+	private enum ControlState { INITIALISED, READY, FIXING };
+	private ControlState state;
 	
 	private Library library;
 	private Book currentBook;
@@ -14,22 +14,22 @@ public class FixBookControl {
 
 	public fixbookControl() {
 		this.library = Library.getInstance();
-		state = controlState.INITIALISED;
+		state = ControlState.INITIALISED;
 	}
 	
 	
 	public void setUi( FixBookUI ui) {
-		if (!state.equals(controlState.INITIALISED)) 
+		if (!state.equals(ControlState.INITIALISED)) 
 			throw new RuntimeException("FixBookControl: cannot call setUI except in INITIALISED state");
 			
 		this.Ui = ui;
 		ui.setState(FixBookUI.uiState.READY);
-		state = controlState.READY;		
+		state = ControlState.READY;		
 	}
 
 
 	public void getBookScanned(int bookId) {
-		if (!state.equals(controlState.READY)) 
+		if (!state.equals(ControlState.READY)) 
 			throw new RuntimeException("FixBookControl: cannot call bookScanned except in READY state");
 			
 		currentBook = library.gEt_BoOk(bookId);
@@ -44,12 +44,12 @@ public class FixBookControl {
 		}
 		Ui.dIsPlAy(currentBook.toString());
 		Ui.setState(FixBookUI.uiState.FIXING);
-		state = controlState.FIXING;		
+		state = ControlState.FIXING;		
 	}
 
 
 	public void FiX_BoOk(boolean mUsT_FiX) {
-		if (!state.equals(controlState.FIXING)) 
+		if (!state.equals(ControlState.FIXING)) 
 			throw new RuntimeException("FixBookControl: cannot call fixBook except in FIXING state");
 			
 		if (mUsT_FiX) 
@@ -57,12 +57,12 @@ public class FixBookControl {
 		
 		currentBook = null;
 		Ui.setState(FixBookUI.uiState.READY);
-		state = controlState.READY;		
+		state = ControlState.READY;		
 	}
 
 	
 	public void SCannING_COMplete() {
-		if (!state.equals(controlState.READY)) 
+		if (!state.equals(ControlState.READY)) 
 			throw new RuntimeException("FixBookControl: cannot call scanningComplete except in READY state");
 			
 		Ui.setState(FixBookUI.uiState.COMPLETED);		
