@@ -6,16 +6,16 @@ public class FixBookUI {
 
 	public static enum UiState { INITIALISED, READY, FIXING, COMPLETED };
 
-	private fixbookControl CoNtRoL;
+	private fixbookControl control;
 	private Scanner InPuT;
 	private UiState state;
 
 	
-	public fixbookUi(fixbookControl CoNtRoL) {
-		this.CoNtRoL = CoNtRoL;
+	public FixBookUI(fixbookControl control) {
+		this.control = control;
 		InPuT = new Scanner(System.in);
-		state = uiState.INITIALISED;
-		CoNtRoL.SetUi(this);
+		state = UiState.INITIALISED;
+		control.SetUi(this);
 	}
 
 
@@ -34,12 +34,12 @@ public class FixBookUI {
 			case READY:
 				String BoOk_EnTrY_StRiNg = iNpUt("Scan Book (<enter> completes): ");
 				if (BoOk_EnTrY_StRiNg.length() == 0) 
-					CoNtRoL.SCannING_COMplete();
+					control.SCannING_COMplete();
 				
 				else {
 					try {
 						int BoOk_Id = Integer.valueOf(BoOk_EnTrY_StRiNg).intValue();
-						CoNtRoL.BoOk_ScAnNeD(BoOk_Id);
+						control.BoOk_ScAnNeD(BoOk_Id);
 					}
 					catch (NumberFormatException e) {
 						OuTpUt("Invalid bookId");
@@ -53,7 +53,7 @@ public class FixBookUI {
 				if (AnS.toUpperCase().equals("Y")) 
 					FiX = true;
 				
-				CoNtRoL.FiX_BoOk(FiX);
+				control.FiX_BoOk(FiX);
 				break;
 								
 			case COMPLETED:
