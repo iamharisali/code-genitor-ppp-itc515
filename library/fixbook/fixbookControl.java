@@ -2,7 +2,7 @@ package library.fixbook;
 import library.entities.Book;
 import library.entities.Library;
 
-public class fixbookControl {
+public class FixBookControl {
 	
 	private fixbookUi Ui;
 	private enum controlState { INITIALISED, READY, FIXING };
