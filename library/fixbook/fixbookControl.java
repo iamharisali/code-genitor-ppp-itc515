@@ -48,7 +48,7 @@ public class FixBookControl {
 	}
 
 
-	public void FiX_BoOk(boolean mUsT_FiX) {
+	public void toFixBook(boolean mUsT_FiX) {
 		if (!state.equals(ControlState.FIXING)) 
 			throw new RuntimeException("FixBookControl: cannot call fixBook except in FIXING state");
 			
