@@ -7,13 +7,13 @@ public class FixBookUI {
 	public static enum UiState { INITIALISED, READY, FIXING, COMPLETED };
 
 	private fixbookControl control;
-	private Scanner InPuT;
+	private Scanner input;
 	private UiState state;
 
 	
 	public FixBookUI(fixbookControl control) {
 		this.control = control;
-		InPuT = new Scanner(System.in);
+		input = new Scanner(System.in);
 		state = UiState.INITIALISED;
 		control.SetUi(this);
 	}
@@ -72,7 +72,7 @@ public class FixBookUI {
 	
 	private String iNpUt(String prompt) {
 		System.out.print(prompt);
-		return InPuT.nextLine();
+		return input.nextLine();
 	}	
 		
 		
