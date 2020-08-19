@@ -24,7 +24,7 @@ public class FixBookUI {
 	}
 
 	
-	public void RuN() {
+	public void runFixBookMethods() {
 		output("Fix Book Use Case UI\n");
 		
 		while (true) {
