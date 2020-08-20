@@ -11,7 +11,7 @@ public class BorrowBookControl {
 	
 	private BorrowBookUI uI;
 	
-	private Library lIbRaRy;
+	private Library library;
 	private Member mEmBeR;
 	private enum CONTROL_STATE { INITIALISED, READY, RESTRICTED, SCANNING, IDENTIFIED, FINALISING, COMPLETED, CANCELLED };
 	private CONTROL_STATE sTaTe;
@@ -22,7 +22,7 @@ public class BorrowBookControl {
 	
 	
 	public BorrowBookControl() {
-		this.lIbRaRy = Library.GeTiNsTaNcE();
+		this.library = Library.getInstance();
 		sTaTe = CONTROL_STATE.INITIALISED;
 	}
 	
@@ -41,12 +41,12 @@ public class BorrowBookControl {
 		if (!sTaTe.equals(CONTROL_STATE.READY)) 
 			throw new RuntimeException("BorrowBookControl: cannot call cardSwiped except in READY state");
 			
-		mEmBeR = lIbRaRy.gEt_MeMbEr(mEmBeR_Id);
+		mEmBeR = library.gEt_MeMbEr(mEmBeR_Id);
 		if (mEmBeR == null) {
 			uI.DiSpLaY("Invalid memberId");
 			return;
 		}
-		if (lIbRaRy.cAn_MeMbEr_BoRrOw(mEmBeR)) {
+		if (library.cAn_MeMbEr_BoRrOw(mEmBeR)) {
 			pEnDiNg_LiSt = new ArrayList<>();
 			uI.SeT_StAtE(BorrowBookUI.uI_STaTe.SCANNING);
 			sTaTe = CONTROL_STATE.SCANNING; 
@@ -63,7 +63,7 @@ public class BorrowBookControl {
 		if (!sTaTe.equals(CONTROL_STATE.SCANNING)) 
 			throw new RuntimeException("BorrowBookControl: cannot call bookScanned except in SCANNING state");
 			
-		bOoK = lIbRaRy.gEt_BoOk(bOoKiD);
+		bOoK = library.gEt_BoOk(bOoKiD);
 		if (bOoK == null) {
 			uI.DiSpLaY("Invalid bookId");
 			return;
@@ -76,7 +76,7 @@ public class BorrowBookControl {
 		for (Book B : pEnDiNg_LiSt) 
 			uI.DiSpLaY(B.toString());
 		
-		if (lIbRaRy.gEt_NuMbEr_Of_LoAnS_ReMaInInG_FoR_MeMbEr(mEmBeR) - pEnDiNg_LiSt.size() == 0) {
+		if (library.gEt_NuMbEr_Of_LoAnS_ReMaInInG_FoR_MeMbEr(mEmBeR) - pEnDiNg_LiSt.size() == 0) {
 			uI.DiSpLaY("Loan limit reached");
 			CoMpLeTe();
 		}
@@ -104,7 +104,7 @@ public class BorrowBookControl {
 			throw new RuntimeException("BorrowBookControl: cannot call commitLoans except in FINALISING state");
 			
 		for (Book B : pEnDiNg_LiSt) {
-			Loan lOaN = lIbRaRy.iSsUe_LoAn(B, mEmBeR);
+			Loan lOaN = library.iSsUe_LoAn(B, mEmBeR);
 			cOmPlEtEd_LiSt.add(lOaN);			
 		}
 		uI.DiSpLaY("Completed Loan Slip");
