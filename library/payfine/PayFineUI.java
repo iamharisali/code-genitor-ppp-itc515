@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class payfineUI {
 
 
-	public static enum UiState{ INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
+	public static enum UiState { INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
 
 	private pAY_fINE_cONTROL CoNtRoL;
 	private Scanner input;
