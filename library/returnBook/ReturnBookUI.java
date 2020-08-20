@@ -6,9 +6,9 @@ public class ReturnBookUI {
 
 	public static enum uI_sTaTe { INITIALISED, READY, INSPECTING, COMPLETED };
 
-	private rETURN_bOOK_cONTROL control;
-	private Scanner input;
-	private uI_sTaTe state;
+	private rETURN_bOOK_cONTROL CoNtRoL;
+	private Scanner iNpUt;
+	private uI_sTaTe StATe;
 
 	
 	public ReturnBookUI(rETURN_bOOK_cONTROL cOnTrOL) {
