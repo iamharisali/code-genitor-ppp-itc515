@@ -26,7 +26,7 @@ public class Library implements Serializable {
 	
 	private static Library SeLf;
 	private int bOoK_Id;
-	private int mEmBeR_Id;
+	private int memberId;
 	private int lOaN_Id;
 	private Date lOaN_DaTe;
 	
@@ -44,7 +44,7 @@ public class Library implements Serializable {
 		CuRrEnT_LoAnS = new HashMap<>();
 		DaMaGeD_BoOkS = new HashMap<>();
 		bOoK_Id = 1;
-		mEmBeR_Id = 1;		
+		memberId = 1;		
 		lOaN_Id = 1;		
 	}
 
@@ -89,8 +89,8 @@ public class Library implements Serializable {
 	}
 	
 	
-	public int gEt_MeMbEr_Id() {
-		return mEmBeR_Id;
+	public int getMember_Id() {
+		return memberId;
 	}
 	
 	
@@ -100,7 +100,7 @@ public class Library implements Serializable {
 
 	
 	private int gEt_NeXt_MeMbEr_Id() {
-		return mEmBeR_Id++;
+		return memberId++;
 	}
 
 	
@@ -138,7 +138,7 @@ public class Library implements Serializable {
 	}
 
 	
-	public Member gEt_MeMbEr(int memberId) {
+	public Member getMember(int memberId) {
 		if (MeMbErS.containsKey(memberId)) 
 			return MeMbErS.get(memberId);
 		return null;
@@ -157,7 +157,7 @@ public class Library implements Serializable {
 	}
 
 	
-	public boolean cAn_MeMbEr_BoRrOw(Member member) {		
+	public boolean canMemberBorrow(Member member) {		
 		if (member.gEt_nUmBeR_Of_CuRrEnT_LoAnS() == lOaNlImIt ) 
 			return false;
 				
@@ -207,7 +207,7 @@ public class Library implements Serializable {
 
 
 	public void DiScHaRgE_LoAn(Loan cUrReNt_LoAn, boolean iS_dAmAgEd) {
-		Member mEmBeR = cUrReNt_LoAn.GeT_MeMbEr();
+		Member mEmBeR = cUrReNt_LoAn.getMember();
 		Book bOoK  = cUrReNt_LoAn.GeT_BoOk();
 		
 		double oVeR_DuE_FiNe = CaLcUlAtE_OvEr_DuE_FiNe(cUrReNt_LoAn);
