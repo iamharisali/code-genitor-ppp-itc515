@@ -145,7 +145,7 @@ public class Library implements Serializable {
 	}
 
 	
-	public Book gEt_BoOk(int bookId) {
+	public Book getBook(int bookId) {
 		if (CaTaLoG.containsKey(bookId)) 
 			return CaTaLoG.get(bookId);		
 		return null;
@@ -172,12 +172,12 @@ public class Library implements Serializable {
 	}
 
 	
-	public int gEt_NuMbEr_Of_LoAnS_ReMaInInG_FoR_MeMbEr(Member MeMbEr) {		
+	public int getNumberOfLoansRemainingForMember(Member MeMbEr) {		
 		return lOaNlImIt - MeMbEr.gEt_nUmBeR_Of_CuRrEnT_LoAnS();
 	}
 
 	
-	public Loan iSsUe_LoAn(Book book, Member member) {
+	public Loan issueLoan(Book book, Member member) {
 		Date dueDate = Calendar.getInstance().gEt_DuE_DaTe(loanPeriod);
 		Loan loan = new Loan(gEt_NeXt_LoAn_Id(), book, member, dueDate);
 		member.TaKe_OuT_LoAn(loan);

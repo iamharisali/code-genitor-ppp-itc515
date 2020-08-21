@@ -58,17 +58,17 @@ public class BorrowBookControl {
 	}
 	
 	
-	public void ScAnNeD(int bOoKiD) {
+	public void scanned(int bookId) {
 		book = null;
 		if (!state.equals(ControlState.SCANNING)) 
 			throw new RuntimeException("BorrowBookControl: cannot call bookScanned except in SCANNING state");
 			
-		book = library.gEt_BoOk(bOoKiD);
+		book = library.getBook(bookId);
 		if (book == null) {
 			ui.display("Invalid bookId");
 			return;
 		}
-		if (!book.iS_AvAiLaBlE()) {
+		if (!book.isAvailable()) {
 			ui.display("Book cannot be borrowed");
 			return;
 		}
@@ -76,16 +76,16 @@ public class BorrowBookControl {
 		for (Book B : pendingList) 
 			ui.display(B.toString());
 		
-		if (library.gEt_NuMbEr_Of_LoAnS_ReMaInInG_FoR_MeMbEr(member) - pendingList.size() == 0) {
+		if (library.getNumberOfLoansRemainingForMember(member) - pendingList.size() == 0) {
 			ui.display("Loan limit reached");
-			CoMpLeTe();
+			complete();
 		}
 	}
 	
 	
-	public void CoMpLeTe() {
+	public void complete() {
 		if (pendingList.size() == 0) 
-			CaNcEl();
+			cancel();
 		
 		else {
 			ui.display("\nFinal Borrowing List");
@@ -99,24 +99,24 @@ public class BorrowBookControl {
 	}
 
 
-	public void CoMmIt_LoAnS() {
+	public void commitLoans() {
 		if (!state.equals(ControlState.FINALISING)) 
 			throw new RuntimeException("BorrowBookControl: cannot call commitLoans except in FINALISING state");
 			
-		for (Book B : pendingList) {
-			Loan lOaN = library.iSsUe_LoAn(B, member);
-			completedList.add(lOaN);			
+		for (Book book : pendingList) {
+			Loan loan = library.issueLoan(book, member);
+			completedList.add(loan);			
 		}
 		ui.display("Completed Loan Slip");
-		for (Loan LOAN : completedList) 
-			ui.display(LOAN.toString());
+		for (Loan loan : completedList) 
+			ui.display(loan.toString());
 		
 		ui.setState(BorrowBookUI.UiState.COMPLETED);
 		state = ControlState.COMPLETED;
 	}
 
 	
-	public void CaNcEl() {
+	public void cancel() {
 		ui.setState(BorrowBookUI.UiState.CANCELLED);
 		state = ControlState.CANCELLED;
 	}
