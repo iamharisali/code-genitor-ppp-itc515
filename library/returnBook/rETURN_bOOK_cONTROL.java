@@ -24,7 +24,7 @@ public class rETURN_bOOK_cONTROL {
 			throw new RuntimeException("ReturnBookControl: cannot call setUI except in INITIALISED state");
 		
 		this.Ui = uI;
-		uI.sEt_sTaTe(ReturnBookUI.uI_sTaTe.READY);
+		uI.setState(ReturnBookUI.uI_sTaTe.READY);
 		sTaTe = cOnTrOl_sTaTe.READY;		
 	}
 
@@ -36,11 +36,11 @@ public class rETURN_bOOK_cONTROL {
 		Book cUrReNt_bOoK = lIbRaRy.gEt_BoOk(bOoK_iD);
 		
 		if (cUrReNt_bOoK == null) {
-			Ui.DiSpLaY("Invalid Book Id");
+			Ui.display("Invalid Book Id");
 			return;
 		}
 		if (!cUrReNt_bOoK.iS_On_LoAn()) {
-			Ui.DiSpLaY("Book has not been borrowed");
+			Ui.display("Book has not been borrowed");
 			return;
 		}		
 		CurrENT_loan = lIbRaRy.GeT_LoAn_By_BoOkId(bOoK_iD);	
@@ -48,14 +48,14 @@ public class rETURN_bOOK_cONTROL {
 		if (CurrENT_loan.Is_OvEr_DuE()) 
 			Over_Due_Fine = lIbRaRy.CaLcUlAtE_OvEr_DuE_FiNe(CurrENT_loan);
 		
-		Ui.DiSpLaY("Inspecting");
-		Ui.DiSpLaY(cUrReNt_bOoK.toString());
-		Ui.DiSpLaY(CurrENT_loan.toString());
+		Ui.display("Inspecting");
+		Ui.display(cUrReNt_bOoK.toString());
+		Ui.display(CurrENT_loan.toString());
 		
 		if (CurrENT_loan.Is_OvEr_DuE()) 
-			Ui.DiSpLaY(String.format("\nOverdue fine : $%.2f", Over_Due_Fine));
+			Ui.display(String.format("\nOverdue fine : $%.2f", Over_Due_Fine));
 		
-		Ui.sEt_sTaTe(ReturnBookUI.uI_sTaTe.INSPECTING);
+		Ui.setState(ReturnBookUI.uI_sTaTe.INSPECTING);
 		sTaTe = cOnTrOl_sTaTe.INSPECTING;		
 	}
 
@@ -64,7 +64,7 @@ public class rETURN_bOOK_cONTROL {
 		if (!sTaTe.equals(cOnTrOl_sTaTe.READY)) 
 			throw new RuntimeException("ReturnBookControl: cannot call scanningComplete except in READY state");
 			
-		Ui.sEt_sTaTe(ReturnBookUI.uI_sTaTe.COMPLETED);		
+		Ui.setState(ReturnBookUI.uI_sTaTe.COMPLETED);		
 	}
 
 
@@ -74,7 +74,7 @@ public class rETURN_bOOK_cONTROL {
 		
 		lIbRaRy.DiScHaRgE_LoAn(CurrENT_loan, iS_dAmAgEd);
 		CurrENT_loan = null;
-		Ui.sEt_sTaTe(ReturnBookUI.uI_sTaTe.READY);
+		Ui.setState(ReturnBookUI.uI_sTaTe.READY);
 		sTaTe = cOnTrOl_sTaTe.READY;				
 	}
 
