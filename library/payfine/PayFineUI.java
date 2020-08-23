@@ -20,7 +20,7 @@ public class PayFineUi {
 	}
 	
 	
-	public void SeT_StAtE(UiState state) {
+	public void SetState(UiState state) {
 		this.StAtE = state;
 	}
 
