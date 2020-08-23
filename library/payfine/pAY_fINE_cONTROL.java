@@ -23,7 +23,7 @@ public class PayFineControl {
 			throw new RuntimeException("PayFineControl: cannot call setUI except in INITIALISED state");
 		}	
 		this.Ui = uI;
-		uI.SeT_StAtE(PayFineUI.uI_sTaTe.READY);
+		uI.SetState(PayFineUI.uI_sTaTe.READY);
 		StAtE = ControlState.READY;		
 	}
 
@@ -39,13 +39,13 @@ public class PayFineControl {
 			return;
 		}
 		Ui.DiSplAY(MeMbEr.toString());
-		Ui.SeT_StAtE(PayFineUI.uI_sTaTe.PAYING);
+		Ui.SetState(PayFineUI.uI_sTaTe.PAYING);
 		StAtE = ControlState.PAYING;
 	}
 	
 	
 	public void Cancel() {
-		Ui.SeT_StAtE(PayFineUI.uI_sTaTe.CANCELLED);
+		Ui.SetState(PayFineUI.uI_sTaTe.CANCELLED);
 		StAtE = ControlState.CANCELLED;
 	}
 
@@ -59,7 +59,7 @@ public class PayFineControl {
 			Ui.DiSplAY(String.format("Change: $%.2f", ChAnGe));
 		
 		Ui.DiSplAY(MeMbEr.toString());
-		Ui.SeT_StAtE(PayFineUI.uI_sTaTe.COMPLETED);
+		Ui.SetState(PayFineUI.uI_sTaTe.COMPLETED);
 		StAtE = ControlState.COMPLETED;
 		return ChAnGe;
 	}
