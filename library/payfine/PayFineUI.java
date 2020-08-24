@@ -16,11 +16,11 @@ public class PayFineUi {
 		this.CoNtRoL = control;
 		input = new Scanner(System.in);
 		state = UiState.INITIALISED;
-		control.SeT_uI(this);
+		control.setUi(this);
 	}
 	
 	
-	public void SetState(UiState state) {
+	public void setState(UiState state) {
 		this.state = state;
 	}
 
