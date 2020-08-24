@@ -9,7 +9,7 @@ public class PayFineControl {
 	private ControlState state;
 	
 	private Library LiBrArY;
-	private Member MeMbEr;
+	private Member member;
 
 
 	public PayFineControl() {
@@ -32,13 +32,13 @@ public class PayFineControl {
 		if (!state.equals(ControlState.READY)) 
 			throw new RuntimeException("PayFineControl: cannot call cardSwiped except in READY state");
 			
-		MeMbEr = LiBrArY.gEt_MeMbEr(memberId);
+		member = LiBrArY.getMember(memberId);
 		
-		if (MeMbEr == null) {
+		if (member == null) {
 			ui.display("Invalid Member Id");
 			return;
 		}
-		ui.display(MeMbEr.toString());
+		ui.display(member.toString());
 		ui.setState(PayFineUI.UiState.PAYING);
 		state = ControlState.PAYING;
 	}
@@ -54,11 +54,11 @@ public class PayFineControl {
 		if (!state.equals(ControlState.PAYING)) 
 			throw new RuntimeException("PayFineControl: cannot call payFine except in PAYING state");
 			
-		double ChAnGe = MeMbEr.PayFine(AmOuNt);
+		double ChAnGe = member.PayFine(AmOuNt);
 		if (ChAnGe > 0) 
 			ui.display(String.format("Change: $%.2f", ChAnGe));
 		
-		ui.display(MeMbEr.toString());
+		ui.display(member.toString());
 		ui.setState(PayFineUI.UiState.COMPLETED);
 		state = ControlState.COMPLETED;
 		return ChAnGe;
