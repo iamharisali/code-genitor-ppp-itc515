@@ -93,7 +93,7 @@ public class PayFineUi {
 	}	
 			
 
-	public void DiSplAY(Object object) {
+	public void display(Object object) {
 		output(object);
 	}
 
