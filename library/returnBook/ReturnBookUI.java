@@ -31,13 +31,13 @@ public class ReturnBookUI {
 				
 			case READY:
 				String bookInputString = input("Scan Book (<enter> completes): ");
-				if (bookInputString.length() == 0) 
+				if (bookInputString.length() == 0) {
 					control.scanningComplete();
-				
+                                }
 				else {
 					try {
-						int Book_Id = Integer.valueOf(bookInputString).intValue();
-						control.bookScaned(Book_Id);
+						int bookId = Integer.valueOf(bookInputString).intValue();
+						control.bookScaned(bookId);
 					}
 					catch (NumberFormatException e) {
 						outPut("Invalid bookId");
@@ -47,11 +47,11 @@ public class ReturnBookUI {
 				
 			case INSPECTING:
 				String AnS = input("Is book damaged? (Y/N): ");
-				boolean Is_DAmAgEd = false;
-				if (AnS.toUpperCase().equals("Y")) 					
-					Is_DAmAgEd = true;
-				
-				control.disChargeLoan(Is_DAmAgEd);
+				boolean isDamaged = false;
+				if (AnS.toUpperCase().equals("Y")) {					
+					isDamaged = true;
+                                }
+				control.disChargeLoan(isDamaged);
 			
 			case COMPLETED:
 				outPut("Return processing complete");
@@ -63,18 +63,15 @@ public class ReturnBookUI {
 			}
 		}
 	}
-
 	
-	private String input(String PrOmPt) {
-		System.out.print(PrOmPt);
+	private String input(String prompt) {
+		System.out.print(prompt);
 		return input.nextLine();
+	}		
+		
+	private void outPut(Object objeCt) {
+		System.out.println(objeCt);
 	}	
-		
-		
-	private void outPut(Object ObJeCt) {
-		System.out.println(ObJeCt);
-	}
-	
 			
 	public void display(Object object) {
 		outPut(object);
@@ -82,7 +79,5 @@ public class ReturnBookUI {
 	
 	public void setState(UiState state) {
 		this.state = state;
-	}
-
-	
+	}	
 }
