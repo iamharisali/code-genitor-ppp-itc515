@@ -6,7 +6,7 @@ public class PayFineControl {
 	
 	private PayFineUI Ui;
 	private enum ControlState{ INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
-	private ControlState StAtE;
+	private ControlState state;
 	
 	private Library LiBrArY;
 	private Member MeMbEr;
@@ -14,22 +14,22 @@ public class PayFineControl {
 
 	public PayFineControl() {
 		this.LiBrArY = Library.GeTiNsTaNcE();
-		StAtE = ControlState.INITIALISED;
+		state = ControlState.INITIALISED;
 	}
 	
 	
 	public void SetUi(PayFineUI uI) {
-		if (!StAtE.equals(ControlState.INITIALISED)) {
+		if (!state.equals(ControlState.INITIALISED)) {
 			throw new RuntimeException("PayFineControl: cannot call setUI except in INITIALISED state");
 		}	
 		this.Ui = uI;
-		uI.SetState(PayFineUI.uI_sTaTe.READY);
-		StAtE = ControlState.READY;		
+		uI.SetState(PayFineUI.uI_state.READY);
+		state = ControlState.READY;		
 	}
 
 
 	public void CardSwiped(int memberId) {
-		if (!StAtE.equals(ControlState.READY)) 
+		if (!state.equals(ControlState.READY)) 
 			throw new RuntimeException("PayFineControl: cannot call cardSwiped except in READY state");
 			
 		MeMbEr = LiBrArY.gEt_MeMbEr(memberId);
@@ -39,19 +39,19 @@ public class PayFineControl {
 			return;
 		}
 		Ui.DiSplAY(MeMbEr.toString());
-		Ui.SetState(PayFineUI.uI_sTaTe.PAYING);
-		StAtE = ControlState.PAYING;
+		Ui.SetState(PayFineUI.uI_state.PAYING);
+		state = ControlState.PAYING;
 	}
 	
 	
 	public void Cancel() {
-		Ui.SetState(PayFineUI.uI_sTaTe.CANCELLED);
-		StAtE = ControlState.CANCELLED;
+		Ui.SetState(PayFineUI.uI_state.CANCELLED);
+		state = ControlState.CANCELLED;
 	}
 
 
 	public double PayFine(double AmOuNt) {
-		if (!StAtE.equals(ControlState.PAYING)) 
+		if (!state.equals(ControlState.PAYING)) 
 			throw new RuntimeException("PayFineControl: cannot call payFine except in PAYING state");
 			
 		double ChAnGe = MeMbEr.PayFine(AmOuNt);
@@ -59,8 +59,8 @@ public class PayFineControl {
 			Ui.DiSplAY(String.format("Change: $%.2f", ChAnGe));
 		
 		Ui.DiSplAY(MeMbEr.toString());
-		Ui.SetState(PayFineUI.uI_sTaTe.COMPLETED);
-		StAtE = ControlState.COMPLETED;
+		Ui.SetState(PayFineUI.uI_state.COMPLETED);
+		state = ControlState.COMPLETED;
 		return ChAnGe;
 	}
 	
