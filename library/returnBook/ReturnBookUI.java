@@ -15,7 +15,7 @@ public class ReturnBookUI {
 		this.control = control;
 		input = new Scanner(System.in);
 		state = UiState.INITIALISED;
-		control.sEt_uI(this);
+		control.setUi(this);
 	}
 
 
@@ -37,7 +37,7 @@ public class ReturnBookUI {
 				else {
 					try {
 						int Book_Id = Integer.valueOf(bookInputString).intValue();
-						control.bOoK_sCaNnEd(Book_Id);
+						control.bookScaned(Book_Id);
 					}
 					catch (NumberFormatException e) {
 						outPut("Invalid bookId");
