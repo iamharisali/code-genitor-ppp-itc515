@@ -35,10 +35,10 @@ public class PayFineControl {
 		MeMbEr = LiBrArY.gEt_MeMbEr(memberId);
 		
 		if (MeMbEr == null) {
-			ui.DiSplAY("Invalid Member Id");
+			ui.display("Invalid Member Id");
 			return;
 		}
-		ui.DiSplAY(MeMbEr.toString());
+		ui.display(MeMbEr.toString());
 		ui.setState(PayFineUI.UiState.PAYING);
 		state = ControlState.PAYING;
 	}
@@ -56,9 +56,9 @@ public class PayFineControl {
 			
 		double ChAnGe = MeMbEr.PayFine(AmOuNt);
 		if (ChAnGe > 0) 
-			ui.DiSplAY(String.format("Change: $%.2f", ChAnGe));
+			ui.display(String.format("Change: $%.2f", ChAnGe));
 		
-		ui.DiSplAY(MeMbEr.toString());
+		ui.display(MeMbEr.toString());
 		ui.setState(PayFineUI.UiState.COMPLETED);
 		state = ControlState.COMPLETED;
 		return ChAnGe;
