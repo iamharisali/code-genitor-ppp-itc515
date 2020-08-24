@@ -25,7 +25,7 @@ public class PayFineUi {
 	}
 
 
-	public void RuN() {
+	public void Run() {
 		output("Pay Fine Use Case UI\n");
 		
 		while (true) {
