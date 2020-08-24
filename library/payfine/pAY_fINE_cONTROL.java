@@ -4,7 +4,7 @@ import library.entities.Member;
 
 public class PayFineControl {
 	
-	private PayFineUI Ui;
+	private PayFineUI ui;
 	private enum ControlState{ INITIALISED, READY, PAYING, COMPLETED, CANCELLED };
 	private ControlState state;
 	
@@ -18,12 +18,12 @@ public class PayFineControl {
 	}
 	
 	
-	public void SetUi(PayFineUI uI) {
+	public void SetUi(PayFineUI ui) {
 		if (!state.equals(ControlState.INITIALISED)) {
 			throw new RuntimeException("PayFineControl: cannot call setUI except in INITIALISED state");
 		}	
-		this.Ui = uI;
-		uI.SetState(PayFineUI.uI_state.READY);
+		this.ui = ui;
+		ui.SetState(PayFineUI.ui_state.READY);
 		state = ControlState.READY;		
 	}
 
@@ -35,17 +35,17 @@ public class PayFineControl {
 		MeMbEr = LiBrArY.gEt_MeMbEr(memberId);
 		
 		if (MeMbEr == null) {
-			Ui.DiSplAY("Invalid Member Id");
+			ui.DiSplAY("Invalid Member Id");
 			return;
 		}
-		Ui.DiSplAY(MeMbEr.toString());
-		Ui.SetState(PayFineUI.uI_state.PAYING);
+		ui.DiSplAY(MeMbEr.toString());
+		ui.SetState(PayFineUI.ui_state.PAYING);
 		state = ControlState.PAYING;
 	}
 	
 	
 	public void Cancel() {
-		Ui.SetState(PayFineUI.uI_state.CANCELLED);
+		ui.SetState(PayFineUI.ui_state.CANCELLED);
 		state = ControlState.CANCELLED;
 	}
 
@@ -56,10 +56,10 @@ public class PayFineControl {
 			
 		double ChAnGe = MeMbEr.PayFine(AmOuNt);
 		if (ChAnGe > 0) 
-			Ui.DiSplAY(String.format("Change: $%.2f", ChAnGe));
+			ui.DiSplAY(String.format("Change: $%.2f", ChAnGe));
 		
-		Ui.DiSplAY(MeMbEr.toString());
-		Ui.SetState(PayFineUI.uI_state.COMPLETED);
+		ui.DiSplAY(MeMbEr.toString());
+		ui.SetState(PayFineUI.ui_state.COMPLETED);
 		state = ControlState.COMPLETED;
 		return ChAnGe;
 	}
