@@ -135,9 +135,8 @@ public class Main {
 		output("\nEnded\n");
 	}	
 
-	
 	private static void PAY_FINES() {
-		new PayFineUI(new pAY_fINE_cONTROL()).RuN();		
+		new PayFineUI(new pAY_fINE_cONTROL()).RuN();	
 	}
 
 
