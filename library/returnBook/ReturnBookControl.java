@@ -6,7 +6,7 @@ import library.entities.Loan;
 ///////////////////////////////////////////////////////////////////////////////
 //                   
 // Subject:          Professional Programming Practice 
-// Author:           DON MEERIYAGALLA
+// @author:           DON MEERIYAGALLA
 // Email:            lakshansm90@gmail.com
 // Lecturer's Name:  Recep Ulusoy
 //
@@ -21,12 +21,19 @@ public class ReturnBookControl {
 	private Library library;
 	private Loan currentLoan;	
 
-	public ReturnBookControl() {
+    /**
+     *
+     */
+    public ReturnBookControl() {
 		this.library = Library.GeTiNsTaNcE();
 		state = ControlState.INITIALISED;
 	}	
 	
-	public void setUi(ReturnBookUI ui) {
+    /**
+     *
+     * @param ui
+     */
+    public void setUi(ReturnBookUI ui) {
 		if (!state.equals(ControlState.INITIALISED)) {
 			throw new RuntimeException("ReturnBookControl: cannot call setUI except in INITIALISED state");
                 }
@@ -36,7 +43,11 @@ public class ReturnBookControl {
 		state = ControlState.READY;		
 	}
 
-	public void bookScaned(int bookId) {
+    /**
+     *
+     * @param bookId
+     */
+    public void bookScaned(int bookId) {
 		if (!state.equals(ControlState.READY)) {
 			throw new RuntimeException("ReturnBookControl: cannot call bookScanned except in READY state");
                 }
@@ -69,14 +80,21 @@ public class ReturnBookControl {
 		state = ControlState.INSPECTING;		
 	}
 
-	public void scanningComplete() {
+    /**
+     *
+     */
+    public void scanningComplete() {
 		if (!state.equals(ControlState.READY)) {
 			throw new RuntimeException("ReturnBookControl: cannot call scanningComplete except in READY state");
                 }
 		returnBookUi.setState(ReturnBookUI.UiState.COMPLETED);		
 	}
 
-	public void disChargeLoan(boolean isDamaged) {
+    /**
+     *
+     * @param isDamaged
+     */
+    public void disChargeLoan(boolean isDamaged) {
 		if (!state.equals(ControlState.INSPECTING)) {
 			throw new RuntimeException("ReturnBookControl: cannot call dischargeLoan except in INSPECTING state");
                 }

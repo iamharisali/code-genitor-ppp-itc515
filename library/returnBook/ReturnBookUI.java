@@ -18,14 +18,21 @@ public class ReturnBookUI {
 	private Scanner input;
 	private UiState state;
 	
-	public ReturnBookUI(ReturnBookControl control) {
+    /**
+     *
+     * @param control
+     */
+    public ReturnBookUI(ReturnBookControl control) {
 		this.control = control;
 		input = new Scanner(System.in);
 		state = UiState.INITIALISED;
 		control.setUi(this);
 	}
 
-	public void run() {		
+    /**
+     *
+     */
+    public void run() {		
 		outPut("Return Book Use Case UI\n");
 		
 		while (true) {
@@ -64,21 +71,37 @@ public class ReturnBookUI {
 			}
 		}
 	}
-	
+    
+    /**
+     *
+     * @param prompt
+     */	
 	private String input(String prompt) {
 		System.out.print(prompt);
 		return input.nextLine();
-	}		
-		
+	}
+        
+    /**
+     *
+     * @param object
+     */		
 	private void outPut(Object objeCt) {
 		System.out.println(objeCt);
 	}	
 			
-	public void display(Object object) {
+    /**
+     *
+     * @param object
+     */
+    public void display(Object object) {
 		outPut(object);
 	}
 	
-	public void setState(UiState state) {
+    /**
+     *
+     * @param state
+     */
+    public void setState(UiState state) {
 		this.state = state;
 	}	
 }
