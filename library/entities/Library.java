@@ -49,7 +49,7 @@ public class Library implements Serializable {
 	}
 
 	
-	public static synchronized Library GeTiNsTaNcE() {		
+	public static synchronized Library getInstance() {		
 		if (SeLf == null) {
 			Path PATH = Paths.get(lIbRaRyFiLe);			
 			if (Files.exists(PATH)) {	
@@ -145,7 +145,7 @@ public class Library implements Serializable {
 	}
 
 	
-	public Book gEt_BoOk(int bookId) {
+	public Book getBook(int bookId) {
 		if (CaTaLoG.containsKey(bookId)) 
 			return CaTaLoG.get(bookId);		
 		return null;
@@ -231,7 +231,7 @@ public class Library implements Serializable {
 	}
 
 
-	public void RePaIr_BoOk(Book cUrReNt_BoOk) {
+	public void repairBook(Book cUrReNt_BoOk) {
 		if (DaMaGeD_BoOkS.containsKey(cUrReNt_BoOk.gEtId())) {
 			cUrReNt_BoOk.RePaIr();
 			DaMaGeD_BoOkS.remove(cUrReNt_BoOk.gEtId());
