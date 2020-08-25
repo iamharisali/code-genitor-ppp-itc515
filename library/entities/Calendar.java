@@ -2,6 +2,15 @@ package library.entities;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
+///////////////////////////////////////////////////////////////////////////////
+//                   
+// Subject:          Professional Programming Practice 
+// Author:           DON MEERIYAGALLA
+// Email:            lakshansm90@gmail.com
+// Lecturer's Name:  Recep Ulusoy 
+//
+//////////////////// PAIR PROGRAMMERS COMPLETE THIS SECTION ////////////////////
+
 public class Calendar {
 	
 	private static Calendar self;
@@ -19,11 +28,19 @@ public class Calendar {
 		return self;
 	}
 	
-	public void incrementDate(int days) {
+    /**
+     *
+     * @param days
+     */
+    public void incrementDate(int days) {
 		calendar.add(java.util.Calendar.DATE, days);		
 	}
 	
-	public synchronized void setDate(Date date) {
+    /**
+     *
+     * @param date
+     */
+    public synchronized void setDate(Date date) {
 		try {
 			calendar.setTime(date);
 	        calendar.set(java.util.Calendar.HOUR_OF_DAY, 0);  
@@ -48,7 +65,12 @@ public class Calendar {
 		}	
 	}
 
-	public synchronized Date getDueDate(int loanPeriod) {
+    /**
+     *
+     * @param loanPeriod
+     * @return
+     */
+    public synchronized Date getDueDate(int loanPeriod) {
 		Date now = getDate();
 		calendar.add(java.util.Calendar.DATE, loanPeriod);
 		Date dUeDaTe = calendar.getTime();
@@ -56,7 +78,12 @@ public class Calendar {
 		return dUeDaTe;
 	}
 	
-	public synchronized long getDaysDifference(Date targetDate) {
+    /**
+     *
+     * @param targetDate
+     * @return
+     */
+    public synchronized long getDaysDifference(Date targetDate) {
 		
 		long diffMillis = getDate().getTime() - targetDate.getTime();
 	    long diffDays = TimeUnit.DAYS.convert(diffMillis, TimeUnit.MILLISECONDS);
