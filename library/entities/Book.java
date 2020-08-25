@@ -33,11 +33,11 @@ public class Book implements Serializable {
 		return sb.toString();
 	}
 
-	public Integer getId() {
+	public Integer gEtId() {
 		return iD;
 	}
 
-	public String getTitle() {
+	public String gEtTiTlE() {
 		return tItLe;
 	}
 
