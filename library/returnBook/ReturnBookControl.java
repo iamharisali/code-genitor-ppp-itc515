@@ -3,9 +3,18 @@ import library.entities.Book;
 import library.entities.Library;
 import library.entities.Loan;
 
+///////////////////////////////////////////////////////////////////////////////
+//                   
+// Subject:          Professional Programming Practice 
+// Author:           DON MEERIYAGALLA
+// Email:            lakshansm90@gmail.com
+// Lecturer's Name:  Recep Ulusoy
+//
+//////////////////// PAIR PROGRAMMERS COMPLETE THIS SECTION ////////////////////
+
 public class ReturnBookControl {
 
-	private ReturnBookUI Ui;
+	private ReturnBookUI returnBookUi;
 	private enum ControlState { INITIALISED, READY, INSPECTING };
 	private ControlState state;
 	
@@ -24,7 +33,7 @@ public class ReturnBookControl {
 			throw new RuntimeException("ReturnBookControl: cannot call setUI except in INITIALISED state");
                 }
                 
-		this.Ui = ui;
+		this.returnBookUi = ui;
 		ui.setState(ReturnBookUI.UiState.READY);
 		state = ControlState.READY;		
 	}
@@ -38,11 +47,11 @@ public class ReturnBookControl {
 		Book currentBook = library.gEt_BoOk(bookId);
 		
 		if (currentBook == null) {
-			Ui.display("Invalid Book Id");
+			returnBookUi.display("Invalid Book Id");
 			return;
 		}
 		if (!currentBook.iS_On_LoAn()) {
-			Ui.display("Book has not been borrowed");
+			returnBookUi.display("Book has not been borrowed");
 			return;
 		}		
 		currentLoan = library.GeT_LoAn_By_BoOkId(bookId);	
@@ -51,15 +60,15 @@ public class ReturnBookControl {
 			overDueFine = library.CaLcUlAtE_OvEr_DuE_FiNe(currentLoan);
                 }
                 
-		Ui.display("Inspecting");
-		Ui.display(currentBook.toString());
-		Ui.display(currentLoan.toString());
+		returnBookUi.display("Inspecting");
+		returnBookUi.display(currentBook.toString());
+		returnBookUi.display(currentLoan.toString());
 		
 		if (currentLoan.Is_OvEr_DuE()) {
-			Ui.display(String.format("\nOverdue fine : $%.2f", overDueFine));
+			returnBookUi.display(String.format("\nOverdue fine : $%.2f", overDueFine));
                 }
                 
-		Ui.setState(ReturnBookUI.UiState.INSPECTING);
+		returnBookUi.setState(ReturnBookUI.UiState.INSPECTING);
 		state = ControlState.INSPECTING;		
 	}
 
@@ -68,7 +77,7 @@ public class ReturnBookControl {
 		if (!state.equals(ControlState.READY)) {
 			throw new RuntimeException("ReturnBookControl: cannot call scanningComplete except in READY state");
                 }
-		Ui.setState(ReturnBookUI.UiState.COMPLETED);		
+		returnBookUi.setState(ReturnBookUI.UiState.COMPLETED);		
 	}
 
 
@@ -79,7 +88,7 @@ public class ReturnBookControl {
                 
 		library.DiScHaRgE_LoAn(currentLoan, isDamaged);
 		currentLoan = null;
-		Ui.setState(ReturnBookUI.UiState.READY);
+		returnBookUi.setState(ReturnBookUI.UiState.READY);
 		state = ControlState.READY;				
 	}
 
