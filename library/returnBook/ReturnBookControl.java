@@ -14,19 +14,17 @@ import library.entities.Loan;
 
 public class ReturnBookControl {
 
-	private ReturnBookUI returnBookUi;
-	private enum ControlState { INITIALISED, READY, INSPECTING };
-	private ControlState state;
-	
+        private enum ControlState { INITIALISED, READY, INSPECTING };
+        
+	private ReturnBookUI returnBookUi;	
+	private ControlState state;	
 	private Library library;
-	private Loan currentLoan;
-	
+	private Loan currentLoan;	
 
 	public ReturnBookControl() {
 		this.library = Library.GeTiNsTaNcE();
 		state = ControlState.INITIALISED;
-	}
-	
+	}	
 	
 	public void setUi(ReturnBookUI ui) {
 		if (!state.equals(ControlState.INITIALISED)) {
@@ -37,7 +35,6 @@ public class ReturnBookControl {
 		ui.setState(ReturnBookUI.UiState.READY);
 		state = ControlState.READY;		
 	}
-
 
 	public void bookScaned(int bookId) {
 		if (!state.equals(ControlState.READY)) {
@@ -72,14 +69,12 @@ public class ReturnBookControl {
 		state = ControlState.INSPECTING;		
 	}
 
-
 	public void scanningComplete() {
 		if (!state.equals(ControlState.READY)) {
 			throw new RuntimeException("ReturnBookControl: cannot call scanningComplete except in READY state");
                 }
 		returnBookUi.setState(ReturnBookUI.UiState.COMPLETED);		
 	}
-
 
 	public void disChargeLoan(boolean isDamaged) {
 		if (!state.equals(ControlState.INSPECTING)) {
@@ -91,6 +86,4 @@ public class ReturnBookControl {
 		returnBookUi.setState(ReturnBookUI.UiState.READY);
 		state = ControlState.READY;				
 	}
-
-
 }
