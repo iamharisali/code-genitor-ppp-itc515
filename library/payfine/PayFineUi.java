@@ -62,7 +62,7 @@ public class PayFineUi {
 					output("Amount must be positive");
 					break;
 				}
-				CoNtRoL.PayFine(AmouNT);
+				CoNtRoL.payFine(AmouNT);
 				break;
 								
 			case CANCELLED:
