@@ -17,10 +17,10 @@ public class Loan implements Serializable {
 	private Date date;
 	private LoanState state;
 
-	public Loan(int loanId, Book bOoK, Member mEmBeR, Date DuE_dAtE) {
+	public Loan(int loanId, Book book, Member member, Date DuE_dAtE) {
 		this.LoAn_Id = loanId;
-		this.BoOk = bOoK;
-		this.MeMbEr = mEmBeR;
+		this.book = book;
+		this.member = member;
 		this.DaTe = DuE_dAtE;
 		this.state = LoanState.CURRENT;
 	}
@@ -47,19 +47,19 @@ public class Loan implements Serializable {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
 		StringBuilder sb = new StringBuilder();
-		sb.append("Loan:  ").append(LoAn_Id).append("\n").append("  Borrower ").append(MeMbEr.GeT_ID()).append(" : ")
-				.append(MeMbEr.GeT_LaSt_NaMe()).append(", ").append(MeMbEr.GeT_FiRsT_NaMe()).append("\n")
-				.append("  Book ").append(BoOk.gEtId()).append(" : ").append(BoOk.gEtTiTlE()).append("\n")
+		sb.append("Loan:  ").append(LoAn_Id).append("\n").append("  Borrower ").append(member.GeT_ID()).append(" : ")
+				.append(member.GeT_LaSt_NaMe()).append(", ").append(member.GeT_FiRsT_NaMe()).append("\n")
+				.append("  Book ").append(book.gEtId()).append(" : ").append(book.gEtTiTlE()).append("\n")
 				.append("  DueDate: ").append(sdf.format(DaTe)).append("\n").append("  State: ").append(StAtE);
 		return sb.toString();
 	}
 
 	public Member getMember() {
-		return MeMbEr;
+		return member;
 	}
 
 	public Book getBook() {
-		return BoOk;
+		return book;
 	}
 
 	public void discharge() {
