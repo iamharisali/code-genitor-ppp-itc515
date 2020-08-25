@@ -173,7 +173,7 @@ public class Main {
 
 
 	private static void RETURN_BOOK() {
-		new ReturnBookUI(new ReturnBookControl()).RuN();		
+		new ReturnBookUI(new ReturnBookControl()).run();
 	}
 
 
