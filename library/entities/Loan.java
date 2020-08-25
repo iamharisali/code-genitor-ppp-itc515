@@ -15,24 +15,24 @@ public class Loan implements Serializable {
 	private Book book;
 	private Member member;
 	private Date date;
-	private lOaN_sTaTe state;
+	private LoanState state;
 
 	public Loan(int loanId, Book bOoK, Member mEmBeR, Date DuE_dAtE) {
 		this.LoAn_Id = loanId;
 		this.BoOk = bOoK;
 		this.MeMbEr = mEmBeR;
 		this.DaTe = DuE_dAtE;
-		this.StAtE = lOaN_sTaTe.CURRENT;
+		this.state = LoanState.CURRENT;
 	}
 
 	public void checkOverDue() {
-		if (StAtE == lOaN_sTaTe.CURRENT && Calendar.gEtInStAnCe().gEt_DaTe().after(DaTe))
-			this.StAtE = lOaN_sTaTe.OVER_DUE;
+		if (state == LoanState.CURRENT && Calendar.gEtInStAnCe().gEt_DaTe().after(DaTe))
+			this.state = LoanState.OVER_DUE;
 
 	}
 
 	public boolean isOverDue() {
-		return StAtE == lOaN_sTaTe.OVER_DUE;
+		return state == LoanState.OVER_DUE;
 	}
 
 	public Integer getId() {
@@ -63,7 +63,7 @@ public class Loan implements Serializable {
 	}
 
 	public void discharge() {
-		StAtE = lOaN_sTaTe.DISCHARGED;
+		state = LoanState.DISCHARGED;
 	}
 
 }
