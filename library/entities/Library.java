@@ -18,7 +18,7 @@ import java.util.Map;
 public class Library implements Serializable {
 	
 	private static final String LibraryFile = "library.obj";
-	private static final int lOaNlImIt = 2;
+	private static final int LoanLimit = 2;
 	private static final int loanPeriod = 2;
 	private static final double FiNe_PeR_DaY = 1.0;
 	private static final double maxFinesOwed = 1.0;
@@ -153,12 +153,12 @@ public class Library implements Serializable {
 
 	
 	public int gEt_LoAn_LiMiT() {
-		return lOaNlImIt;
+		return LoanLimit;
 	}
 
 	
 	public boolean cAn_MeMbEr_BoRrOw(Member member) {		
-		if (member.gEt_nUmBeR_Of_CuRrEnT_LoAnS() == lOaNlImIt ) 
+		if (member.gEt_nUmBeR_Of_CuRrEnT_LoAnS() == LoanLimit ) 
 			return false;
 				
 		if (member.FiNeS_OwEd() >= maxFinesOwed) 
@@ -173,7 +173,7 @@ public class Library implements Serializable {
 
 	
 	public int gEt_NuMbEr_Of_LoAnS_ReMaInInG_FoR_MeMbEr(Member MeMbEr) {		
-		return lOaNlImIt - MeMbEr.gEt_nUmBeR_Of_CuRrEnT_LoAnS();
+		return LoanLimit - MeMbEr.gEt_nUmBeR_Of_CuRrEnT_LoAnS();
 	}
 
 	
