@@ -17,7 +17,7 @@ import java.util.Map;
 @SuppressWarnings("serial")
 public class Library implements Serializable {
 	
-	private static final String lIbRaRyFiLe = "library.obj";
+	private static final String LibraryFile = "library.obj";
 	private static final int lOaNlImIt = 2;
 	private static final int loanPeriod = 2;
 	private static final double FiNe_PeR_DaY = 1.0;
@@ -51,9 +51,9 @@ public class Library implements Serializable {
 	
 	public static synchronized Library getInstance() {		
 		if (SeLf == null) {
-			Path PATH = Paths.get(lIbRaRyFiLe);			
+			Path PATH = Paths.get(LibraryFile);			
 			if (Files.exists(PATH)) {	
-				try (ObjectInputStream LiBrArY_FiLe = new ObjectInputStream(new FileInputStream(lIbRaRyFiLe));) {
+				try (ObjectInputStream LiBrArY_FiLe = new ObjectInputStream(new FileInputStream(LibraryFile));) {
 			    
 					SeLf = (Library) LiBrArY_FiLe.readObject();
 					Calendar.gEtInStAnCe().SeT_DaTe(SeLf.lOaN_DaTe);
@@ -72,7 +72,7 @@ public class Library implements Serializable {
 	public static synchronized void SaVe() {
 		if (SeLf != null) {
 			SeLf.lOaN_DaTe = Calendar.gEtInStAnCe().gEt_DaTe();
-			try (ObjectOutputStream LiBrArY_fIlE = new ObjectOutputStream(new FileOutputStream(lIbRaRyFiLe));) {
+			try (ObjectOutputStream LiBrArY_fIlE = new ObjectOutputStream(new FileOutputStream(LibraryFile));) {
 				LiBrArY_fIlE.writeObject(SeLf);
 				LiBrArY_fIlE.flush();
 				LiBrArY_fIlE.close();	
