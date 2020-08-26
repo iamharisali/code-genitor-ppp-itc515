@@ -77,43 +77,45 @@ public class Member implements Serializable {
 	}
 
 	
-	public String GeT_LaSt_NaMe() {
+	public String getLastName() {
 		return lastName;
 	}
 
 	
-	public String GeT_FiRsT_NaMe() {
+	public String getFirstName() {
 		return firstName;
 	}
 
 
-	public void AdD_FiNe(double fine) {
+	public void addFine(double fine) {
 		finesOwing += fine;
 	}
 	
-	public double PaY_FiNe(double AmOuNt) {
-		if (AmOuNt < 0) 
+	public double payFine(double amount) {
+		if (amount < 0) {
 			throw new RuntimeException("Member.payFine: amount must be positive");
-		
+                }
+                
 		double change = 0;
-		if (AmOuNt > finesOwing) {
-			change = AmOuNt - finesOwing;
+		if (amount > finesOwing) {
+			change = amount - finesOwing;
 			finesOwing = 0;
 		}
-		else 
-			finesOwing -= AmOuNt;
-		
+		else {
+			finesOwing -= amount;
+                }
+                
 		return change;
 	}
 
 
-	public void dIsChArGeLoAn(Loan LoAn) {
-		if (currentLoans.containsKey(LoAn.GeT_Id())) 
-			currentLoans.remove(LoAn.GeT_Id());
-		
-		else 
+	public void disChargeLoan(Loan loan) {
+		if (currentLoans.containsKey(loan.GeT_Id())) {
+			currentLoans.remove(loan.GeT_Id());
+                }
+                else{ 
 			throw new RuntimeException("No such loan held by member");
-				
+                }	
 	}
 
 }
