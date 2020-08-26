@@ -18,12 +18,12 @@ public class Member implements Serializable {
 	private Map<Integer, Loan> currentLoans;
 
 	
-	public Member(String lAsT_nAmE, String fIrSt_nAmE, String eMaIl_aDdReSs, int pHoNe_nUmBeR, int mEmBeR_iD) {
-		this.lastName = lAsT_nAmE;
-		this.firstName = fIrSt_nAmE;
-		this.emailAddress = eMaIl_aDdReSs;
-		this.phoneNumber = pHoNe_nUmBeR;
-		this.memberId = mEmBeR_iD;
+	public Member(String lastName, String firstName, String emailAddress, int phoneNumber, int memberId) {
+		this.lastName = lastName;
+		this.firstName = firstName;
+		this.emailAddress = emailAddress;
+		this.phoneNumber = phoneNumber;
+		this.memberId = memberId;
 		
 		this.currentLoans = new HashMap<>();
 	}
