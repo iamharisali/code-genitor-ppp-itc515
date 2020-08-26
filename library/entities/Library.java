@@ -19,7 +19,7 @@ public class Library implements Serializable {
 	
 	private static final String LibraryFile = "library.obj";
 	private static final int LoanLimit = 2;
-	private static final int loanPeriod = 2;
+	private static final int LoanPeriod = 2;
 	private static final double FiNe_PeR_DaY = 1.0;
 	private static final double maxFinesOwed = 1.0;
 	private static final double damageFee = 2.0;
@@ -178,7 +178,7 @@ public class Library implements Serializable {
 
 	
 	public Loan iSsUe_LoAn(Book book, Member member) {
-		Date dueDate = Calendar.gEtInStAnCe().gEt_DuE_DaTe(loanPeriod);
+		Date dueDate = Calendar.gEtInStAnCe().gEt_DuE_DaTe(LoanPeriod);
 		Loan loan = new Loan(gEt_NeXt_LoAn_Id(), book, member, dueDate);
 		member.TaKe_OuT_LoAn(loan);
 		book.BoRrOw();
