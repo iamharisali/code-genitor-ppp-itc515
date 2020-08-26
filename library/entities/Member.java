@@ -46,32 +46,33 @@ public class Member implements Serializable {
 	}
 
 	
-	public int GeT_ID() {
+	public int getId() {
 		return memberId;
 	}
 
 	
-	public List<Loan> GeT_LoAnS() {
+	public List<Loan> getLoans() {
 		return new ArrayList<Loan>(currentLoans.values());
 	}
 
 	
-	public int gEt_nUmBeR_Of_CuRrEnT_LoAnS() {
+	public int getNumberOfCurrentLoans() {
 		return currentLoans.size();
 	}
 
 	
-	public double FiNeS_OwEd() {
+	public double finesOwed() {
 		return finesOwing;
 	}
 
 	
-	public void TaKe_OuT_LoAn(Loan lOaN) {
-		if (!currentLoans.containsKey(lOaN.GeT_Id())) 
-			currentLoans.put(lOaN.GeT_Id(), lOaN);
-		
-		else 
+	public void takeOutLoan(Loan loan) {
+		if (!currentLoans.containsKey(loan.GeT_Id())) {
+			currentLoans.put(loan.GeT_Id(), loan);
+                }
+		else {
 			throw new RuntimeException("Duplicate loan added to member");
+                }
 				
 	}
 
