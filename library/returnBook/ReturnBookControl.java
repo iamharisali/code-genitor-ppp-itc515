@@ -3,15 +3,6 @@ import library.entities.Book;
 import library.entities.Library;
 import library.entities.Loan;
 
-///////////////////////////////////////////////////////////////////////////////
-//                   
-// Subject:          Professional Programming Practice 
-// @author:           DON MEERIYAGALLA
-// Email:            lakshansm90@gmail.com
-// Lecturer's Name:  Recep Ulusoy
-//
-//////////////////// PAIR PROGRAMMERS COMPLETE THIS SECTION ////////////////////
-
 public class ReturnBookControl {
 
         private enum ControlState { INITIALISED, READY, INSPECTING };
