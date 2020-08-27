@@ -22,7 +22,7 @@ public class Library implements Serializable {
 	private static final int LoanPeriod = 2;
 	private static final double FinePerDay = 1.0;
 	private static final double MaxFinesOwed = 1.0;
-	private static final double damageFee = 2.0;
+	private static final double DamageFee = 2.0;
 	
 	private static Library SeLf;
 	private int bOoK_Id;
@@ -216,7 +216,7 @@ public class Library implements Serializable {
 		mEmBeR.dIsChArGeLoAn(cUrReNt_LoAn);
 		bOoK.ReTuRn(iS_dAmAgEd);
 		if (iS_dAmAgEd) {
-			mEmBeR.AdD_FiNe(damageFee);
+			mEmBeR.AdD_FiNe(DamageFee);
 			DaMaGeD_BoOkS.put(bOoK.gEtId(), bOoK);
 		}
 		cUrReNt_LoAn.DiScHaRgE();
