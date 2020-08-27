@@ -58,7 +58,7 @@ public class Book implements Serializable {
 	}
 
 	
-	public void BoRrOw() {
+	public void borrow() {
 		if (StAtE.equals(sTaTe.AVAILABLE)) 
 			StAtE = sTaTe.ON_LOAN;
 		
