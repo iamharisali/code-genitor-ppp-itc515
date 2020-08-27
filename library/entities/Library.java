@@ -173,7 +173,7 @@ public class Library implements Serializable {
 	}
 
 	
-	public int gEt_NuMbEr_Of_LoAnS_ReMaInInG_FoR_MeMbEr(Member MeMbEr) {		
+	public int getNumberOfLoansRemainingForMember(Member MeMbEr) {		
 		return LoanLimit - MeMbEr.getNumberOfCurrentLoans();
 	}
 
