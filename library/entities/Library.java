@@ -105,7 +105,7 @@ public class Library implements Serializable {
 	}
 
 	
-	private int gEt_NeXt_LoAn_Id() {
+	private int getNextLoanId() {
 		return loanId++;
 	}
 
@@ -180,7 +180,7 @@ public class Library implements Serializable {
 	
 	public Loan iSsUe_LoAn(Book book, Member member) {
 		Date dueDate = Calendar.getInstance().getDueDate(LoanPeriod);
-		Loan loan = new Loan(gEt_NeXt_LoAn_Id(), book, member, dueDate);
+		Loan loan = new Loan(getNextLoanId(), book, member, dueDate);
 		member.takeOutLoan(loan);
 		book.BoRrOw();
 		loans.put(loan.GeT_Id(), loan);
