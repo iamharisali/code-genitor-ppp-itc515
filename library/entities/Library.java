@@ -200,28 +200,28 @@ public class Library implements Serializable {
 	public double calculateOverdueFines(Loan LoAn) {
 		if (LoAn.isOverDue()) {
 			long daysOverDue = Calendar.getInstance().getDaysDifference(LoAn.getDueDate());
-			double fInE = daysOverDue * FinePerDay;
-			return fInE;
+			double fine = daysOverDue * FinePerDay;
+			return fine;
 		}
 		return 0.0;		
 	}
 
 
-	public void dischargeLoans(Loan cUrReNt_LoAn, boolean iS_dAmAgEd) {
-		Member mEmBeR = cUrReNt_LoAn.GeT_MeMbEr();
-		Book bOoK  = cUrReNt_LoAn.GeT_BoOk();
+	public void dischargeLoans(Loan currentLoan, boolean isDamaged) {
+		Member member = currentLoan.getMember();
+		Book book  = currentLoan.getBook();
 		
-		double oVeR_DuE_FiNe = calculateOverdueFines(cUrReNt_LoAn);
-		mEmBeR.addFine(oVeR_DuE_FiNe);	
+		double overDueFIne = calculateOverdueFines(currentLoan);
+		member.addFine(overDueFIne);	
 		
-		mEmBeR.disChargeLoan(cUrReNt_LoAn);
-		bOoK.ReTuRn(iS_dAmAgEd);
-		if (iS_dAmAgEd) {
-			mEmBeR.addFine(DamageFee);
-			damagedBooks.put(bOoK.getId(), bOoK);
+		member.dischargeLoan(currentLoan);
+		book.bookReturn(isDamaged);
+		if (isDamaged) {
+			member.addFine(DamageFee);
+			damagedBooks.put(book.getId(), book);
 		}
-		cUrReNt_LoAn.DiScHaRgE();
-		currentLoans.remove(bOoK.getId());
+		currentLoan.discharge();
+		currentLoans.remove(book.getId());
 	}
 
 
