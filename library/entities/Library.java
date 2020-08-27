@@ -21,7 +21,7 @@ public class Library implements Serializable {
 	private static final int LoanLimit = 2;
 	private static final int LoanPeriod = 2;
 	private static final double FinePerDay = 1.0;
-	private static final double maxFinesOwed = 1.0;
+	private static final double MaxFinesOwed = 1.0;
 	private static final double damageFee = 2.0;
 	
 	private static Library SeLf;
@@ -161,7 +161,7 @@ public class Library implements Serializable {
 		if (member.gEt_nUmBeR_Of_CuRrEnT_LoAnS() == LoanLimit ) 
 			return false;
 				
-		if (member.FiNeS_OwEd() >= maxFinesOwed) 
+		if (member.FiNeS_OwEd() >= MaxFinesOwed) 
 			return false;
 				
 		for (Loan loan : member.GeT_LoAnS()) 
