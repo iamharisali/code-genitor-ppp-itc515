@@ -20,7 +20,7 @@ public class Library implements Serializable {
 	private static final String LibraryFile = "library.obj";
 	private static final int LoanLimit = 2;
 	private static final int LoanPeriod = 2;
-	private static final double FiNe_PeR_DaY = 1.0;
+	private static final double FinePerDay = 1.0;
 	private static final double maxFinesOwed = 1.0;
 	private static final double damageFee = 2.0;
 	
@@ -199,7 +199,7 @@ public class Library implements Serializable {
 	public double CaLcUlAtE_OvEr_DuE_FiNe(Loan LoAn) {
 		if (LoAn.Is_OvEr_DuE()) {
 			long DaYs_OvEr_DuE = Calendar.gEtInStAnCe().GeT_DaYs_DiFfErEnCe(LoAn.GeT_DuE_DaTe());
-			double fInE = DaYs_OvEr_DuE * FiNe_PeR_DaY;
+			double fInE = DaYs_OvEr_DuE * FinePerDay;
 			return fInE;
 		}
 		return 0.0;		
