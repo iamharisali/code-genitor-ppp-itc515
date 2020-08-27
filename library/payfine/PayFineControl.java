@@ -26,7 +26,7 @@ public class PayFineControl {
 	private Member member;
 
 	public PayFineControl() {
-		this.LiBrArY = Library.GeTiNsTaNcE();
+		this.LiBrArY = Library.getInstance();
 		state = ControlState.INITIALISED;
 	}
 
@@ -63,9 +63,9 @@ public class PayFineControl {
 		if (!state.equals(ControlState.PAYING))
 			throw new RuntimeException("PayFineControl: cannot call payFine except in PAYING state");
 
-		double change = member.payFine(amount);
-		if (change > 0)
-			ui.display(String.format("Change: $%.2f", change));
+		double ChAnGe = member.PaY_FiNe(AmOuNt);
+		if (ChAnGe > 0)
+			ui.display(String.format("Change: $%.2f", ChAnGe));
 
 		ui.display(member.toString());
 		ui.setState(PayFineUi.UiState.COMPLETED);
