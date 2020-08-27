@@ -197,9 +197,9 @@ public class Library implements Serializable {
 	}
 
 	
-	public double calculateOverdueFines(Loan LoAn) {
-		if (LoAn.isOverDue()) {
-			long daysOverDue = Calendar.getInstance().getDaysDifference(LoAn.getDueDate());
+	public double calculateOverdueFines(Loan loan) {
+		if (loan.isOverDue()) {
+			long daysOverDue = Calendar.getInstance().getDaysDifference(loan.getDueDate());
 			double fine = daysOverDue * FinePerDay;
 			return fine;
 		}
@@ -226,16 +226,16 @@ public class Library implements Serializable {
 
 
 	public void checkCurrentLoans() {
-		for (Loan lOaN : currentLoans.values()) 
-			lOaN.cHeCk_OvEr_DuE();
+		for (Loan loan : currentLoans.values()) 
+			loan.cHeCk_OvEr_DuE();
 				
 	}
 
 
-	public void repairBook(Book cUrReNt_BoOk) {
-		if (damagedBooks.containsKey(cUrReNt_BoOk.getId())) {
-			cUrReNt_BoOk.RePaIr();
-			damagedBooks.remove(cUrReNt_BoOk.getId());
+	public void repairBook(Book currentBook) {
+		if (damagedBooks.containsKey(currentBook.getId())) {
+			currentBook.repair();
+			damagedBooks.remove(currentBook.getId());
 		}
 		else 
 			throw new RuntimeException("Library: repairBook: book is not damaged");
