@@ -95,7 +95,7 @@ public class Library implements Serializable {
 	}
 	
 	
-	private int gEt_NeXt_BoOk_Id() {
+	private int getNextBookId() {
 		return bookId++;
 	}
 
@@ -133,7 +133,7 @@ public class Library implements Serializable {
 
 	
 	public Book aDd_BoOk(String a, String t, String c) {		
-		Book b = new Book(a, t, c, gEt_NeXt_BoOk_Id());
+		Book b = new Book(a, t, c, getNextBookId());
 		catalog.put(b.getId(), b);		
 		return b;
 	}
