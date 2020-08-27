@@ -183,13 +183,13 @@ public class Library implements Serializable {
 		Loan loan = new Loan(getNextLoanId(), book, member, dueDate);
 		member.takeOutLoan(loan);
 		book.borrow();
-		loans.put(loan.GeT_Id(), loan);
+		loans.put(loan.getId(), loan);
 		currentLoans.put(book.getId(), loan);
 		return loan;
 	}
 	
 	
-	public Loan GeT_LoAn_By_BoOkId(int bookId) {
+	public Loan getLoanByBookId(int bookId) {
 		if (currentLoans.containsKey(bookId)) 
 			return currentLoans.get(bookId);
 		
@@ -197,7 +197,7 @@ public class Library implements Serializable {
 	}
 
 	
-	public double CaLcUlAtE_OvEr_DuE_FiNe(Loan LoAn) {
+	public double calculateOverdueFines(Loan LoAn) {
 		if (LoAn.isOverDue()) {
 			long DaYs_OvEr_DuE = Calendar.getInstance().getDaysDifference(LoAn.GeT_DuE_DaTe());
 			double fInE = DaYs_OvEr_DuE * FinePerDay;
@@ -207,11 +207,11 @@ public class Library implements Serializable {
 	}
 
 
-	public void DiScHaRgE_LoAn(Loan cUrReNt_LoAn, boolean iS_dAmAgEd) {
+	public void dischargeLoans(Loan cUrReNt_LoAn, boolean iS_dAmAgEd) {
 		Member mEmBeR = cUrReNt_LoAn.GeT_MeMbEr();
 		Book bOoK  = cUrReNt_LoAn.GeT_BoOk();
 		
-		double oVeR_DuE_FiNe = CaLcUlAtE_OvEr_DuE_FiNe(cUrReNt_LoAn);
+		double oVeR_DuE_FiNe = calculateOverdueFines(cUrReNt_LoAn);
 		mEmBeR.addFine(oVeR_DuE_FiNe);	
 		
 		mEmBeR.disChargeLoan(cUrReNt_LoAn);
@@ -225,7 +225,7 @@ public class Library implements Serializable {
 	}
 
 
-	public void cHeCk_CuRrEnT_LoAnS() {
+	public void checkCurrentLoans() {
 		for (Loan lOaN : currentLoans.values()) 
 			lOaN.cHeCk_OvEr_DuE();
 				
