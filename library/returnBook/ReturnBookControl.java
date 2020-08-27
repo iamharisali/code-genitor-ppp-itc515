@@ -3,15 +3,6 @@ import library.entities.Book;
 import library.entities.Library;
 import library.entities.Loan;
 
-///////////////////////////////////////////////////////////////////////////////
-//                   
-// Subject:          Professional Programming Practice 
-// @author:           DON MEERIYAGALLA
-// Email:            lakshansm90@gmail.com
-// Lecturer's Name:  Recep Ulusoy
-//
-//////////////////// PAIR PROGRAMMERS COMPLETE THIS SECTION ////////////////////
-
 public class ReturnBookControl {
 
         private enum ControlState { INITIALISED, READY, INSPECTING };
@@ -25,7 +16,7 @@ public class ReturnBookControl {
      *
      */
     public ReturnBookControl() {
-		this.library = Library.GeTiNsTaNcE();
+		this.library = Library.getInstance();
 		state = ControlState.INITIALISED;
 	}	
 	
@@ -52,7 +43,7 @@ public class ReturnBookControl {
 			throw new RuntimeException("ReturnBookControl: cannot call bookScanned except in READY state");
                 }
 		
-		Book currentBook = library.gEt_BoOk(bookId);
+		Book currentBook = library.getBook(bookId);
 		
 		if (currentBook == null) {
 			returnBookUi.display("Invalid Book Id");

@@ -127,14 +127,14 @@ public class Library implements Serializable {
 
 	public Member aDd_MeMbEr(String lastName, String firstName, String email, int phoneNo) {		
 		Member member = new Member(lastName, firstName, email, phoneNo, gEt_NeXt_MeMbEr_Id());
-		MeMbErS.put(member.GeT_ID(), member);		
+		MeMbErS.put(member.getId(), member);		
 		return member;
 	}
 
 	
 	public Book aDd_BoOk(String a, String t, String c) {		
 		Book b = new Book(a, t, c, gEt_NeXt_BoOk_Id());
-		CaTaLoG.put(b.gEtId(), b);		
+		CaTaLoG.put(b.getId(), b);		
 		return b;
 	}
 
@@ -159,13 +159,13 @@ public class Library implements Serializable {
 
 	
 	public boolean cAn_MeMbEr_BoRrOw(Member member) {		
-		if (member.gEt_nUmBeR_Of_CuRrEnT_LoAnS() == LoanLimit ) 
+		if (member.getNumberOfCurrentLoans() == LoanLimit ) 
 			return false;
 				
-		if (member.FiNeS_OwEd() >= MaxFinesOwed) 
+		if (member.finesOwed() >= MaxFinesOwed) 
 			return false;
 				
-		for (Loan loan : member.GeT_LoAnS()) 
+		for (Loan loan : member.getLoans()) 
 			if (loan.Is_OvEr_DuE()) 
 				return false;
 			
@@ -174,17 +174,17 @@ public class Library implements Serializable {
 
 	
 	public int gEt_NuMbEr_Of_LoAnS_ReMaInInG_FoR_MeMbEr(Member MeMbEr) {		
-		return LoanLimit - MeMbEr.gEt_nUmBeR_Of_CuRrEnT_LoAnS();
+		return LoanLimit - MeMbEr.getNumberOfCurrentLoans();
 	}
 
 	
 	public Loan iSsUe_LoAn(Book book, Member member) {
 		Date dueDate = Calendar.getInstance().getDueDate(LoanPeriod);
 		Loan loan = new Loan(gEt_NeXt_LoAn_Id(), book, member, dueDate);
-		member.TaKe_OuT_LoAn(loan);
+		member.takeOutLoan(loan);
 		book.BoRrOw();
 		LoAnS.put(loan.GeT_Id(), loan);
-		CuRrEnT_LoAnS.put(book.gEtId(), loan);
+		CuRrEnT_LoAnS.put(book.getId(), loan);
 		return loan;
 	}
 	
@@ -212,16 +212,16 @@ public class Library implements Serializable {
 		Book bOoK  = cUrReNt_LoAn.GeT_BoOk();
 		
 		double oVeR_DuE_FiNe = CaLcUlAtE_OvEr_DuE_FiNe(cUrReNt_LoAn);
-		mEmBeR.AdD_FiNe(oVeR_DuE_FiNe);	
+		mEmBeR.addFine(oVeR_DuE_FiNe);	
 		
-		mEmBeR.dIsChArGeLoAn(cUrReNt_LoAn);
+		mEmBeR.disChargeLoan(cUrReNt_LoAn);
 		bOoK.ReTuRn(iS_dAmAgEd);
 		if (iS_dAmAgEd) {
-			mEmBeR.AdD_FiNe(DamageFee);
-			DaMaGeD_BoOkS.put(bOoK.gEtId(), bOoK);
+			mEmBeR.addFine(DamageFee);
+			DaMaGeD_BoOkS.put(bOoK.getId(), bOoK);
 		}
 		cUrReNt_LoAn.DiScHaRgE();
-		CuRrEnT_LoAnS.remove(bOoK.gEtId());
+		CuRrEnT_LoAnS.remove(bOoK.getId());
 	}
 
 
@@ -233,9 +233,9 @@ public class Library implements Serializable {
 
 
 	public void repairBook(Book cUrReNt_BoOk) {
-		if (DaMaGeD_BoOkS.containsKey(cUrReNt_BoOk.gEtId())) {
+		if (DaMaGeD_BoOkS.containsKey(cUrReNt_BoOk.getId())) {
 			cUrReNt_BoOk.RePaIr();
-			DaMaGeD_BoOkS.remove(cUrReNt_BoOk.gEtId());
+			DaMaGeD_BoOkS.remove(cUrReNt_BoOk.getId());
 		}
 		else 
 			throw new RuntimeException("Library: repairBook: book is not damaged");

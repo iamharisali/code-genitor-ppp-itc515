@@ -2,17 +2,18 @@ package library;
 import java.text.SimpleDateFormat;
 import java.util.Scanner;
 
+import library.borrowbook.BorrowBookControl;
 import library.borrowbook.BorrowBookUI;
-import library.borrowbook.bORROW_bOOK_cONTROL;
+
 import library.entities.Book;
 import library.entities.Calendar;
 import library.entities.Library;
 import library.entities.Loan;
 import library.entities.Member;
+import library.fixbook.FixBookControl;
 import library.fixbook.FixBookUI;
-import library.fixbook.fIX_bOOK_cONTROL;
-import library.payfine.PayFineUI;
-import library.payfine.pAY_fINE_cONTROL;
+import library.payfine.PayFineControl;
+import library.payfine.PayFineUi;
 import library.returnBook.ReturnBookUI;
 import library.returnBook.ReturnBookControl;
 
@@ -55,7 +56,7 @@ public class Main {
 	public static void main(String[] args) {		
 		try {			
 			IN = new Scanner(System.in);
-			LIB = Library.GeTiNsTaNcE();
+			LIB = Library.getInstance();
 			CAL = Calendar.getInstance();
 			SDF = new SimpleDateFormat("dd/MM/yyyy");
 	
@@ -136,7 +137,7 @@ public class Main {
 	}	
 
 	private static void PAY_FINES() {
-		new PayFineUI(new pAY_fINE_cONTROL()).RuN();	
+		new PayFineUi(new PayFineControl()).Run();	
 	}
 
 
@@ -168,7 +169,7 @@ public class Main {
 
 
 	private static void BORROW_BOOK() {
-		new BorrowBookUI(new bORROW_bOOK_cONTROL()).RuN();		
+		new BorrowBookUI(new BorrowBookControl()).RuN();		
 	}
 
 
@@ -178,7 +179,7 @@ public class Main {
 
 
 	private static void FIX_BOOKS() {
-		new FixBookUI(new fIX_bOOK_cONTROL()).RuN();		
+		new FixBookUI(new FixBookControl()).runFixBookMethods();		
 	}
 
 
