@@ -3,6 +3,15 @@ package library.payfine;
 import library.entities.Library;
 import library.entities.Member;
 
+///////////////////////////////////////////////////////////////////////////////
+//                   
+// Subject:          Professional Programming Practice 
+// @author:          Abhimanyu Bhat
+// Email:            abhimanyubhat4296@gmail.com
+// Lecturer's Name:  Recep Ulusoy
+//
+//////////////////// PAIR PROGRAMMERS COMPLETE THIS SECTION ////////////////////
+
 public class PayFineControl {
 
 	private PayFineUi ui;
@@ -50,7 +59,7 @@ public class PayFineControl {
 		state = ControlState.CANCELLED;
 	}
 
-	public double payFine(double AmOuNt) {
+	public double payFine(double amount) {
 		if (!state.equals(ControlState.PAYING))
 			throw new RuntimeException("PayFineControl: cannot call payFine except in PAYING state");
 
@@ -61,7 +70,7 @@ public class PayFineControl {
 		ui.display(member.toString());
 		ui.setState(PayFineUi.UiState.COMPLETED);
 		state = ControlState.COMPLETED;
-		return ChAnGe;
+		return change;
 	}
 
 }
