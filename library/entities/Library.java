@@ -29,7 +29,7 @@ public class Library implements Serializable {
 	private int bookId;
 	private int memberId;
 	private int loanId;
-	private Date lOaN_DaTe;
+	private Date loanDate;
 	
 	private Map<Integer, Book> CaTaLoG;
 	private Map<Integer, Member> MeMbErS;
@@ -57,7 +57,7 @@ public class Library implements Serializable {
 				try (ObjectInputStream LiBrArY_FiLe = new ObjectInputStream(new FileInputStream(LibraryFile));) {
 			    
 					Self = (Library) LiBrArY_FiLe.readObject();
-					Calendar.getInstance().setDate(Self.lOaN_DaTe);
+					Calendar.getInstance().setDate(Self.loanDate);
 					LiBrArY_FiLe.close();
 				}
 				catch (Exception e) {
@@ -72,7 +72,7 @@ public class Library implements Serializable {
 	
 	public static synchronized void SaVe() {
 		if (Self != null) {
-			Self.lOaN_DaTe = Calendar.getInstance().getDate();
+			Self.loanDate = Calendar.getInstance().getDate();
 			try (ObjectOutputStream LiBrArY_fIlE = new ObjectOutputStream(new FileOutputStream(LibraryFile));) {
 				LiBrArY_fIlE.writeObject(Self);
 				LiBrArY_fIlE.flush();
