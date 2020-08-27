@@ -26,7 +26,7 @@ public class Library implements Serializable {
 	private static final double DamageFee = 2.0;
 	
 	private static Library Self;
-	private int bOoK_Id;
+	private int bookId;
 	private int mEmBeR_Id;
 	private int lOaN_Id;
 	private Date lOaN_DaTe;
@@ -44,7 +44,7 @@ public class Library implements Serializable {
 		LoAnS = new HashMap<>();
 		CuRrEnT_LoAnS = new HashMap<>();
 		DaMaGeD_BoOkS = new HashMap<>();
-		bOoK_Id = 1;
+		bookId = 1;
 		mEmBeR_Id = 1;		
 		lOaN_Id = 1;		
 	}
@@ -86,7 +86,7 @@ public class Library implements Serializable {
 
 	
 	public int gEt_BoOkId() {
-		return bOoK_Id;
+		return bookId;
 	}
 	
 	
@@ -96,7 +96,7 @@ public class Library implements Serializable {
 	
 	
 	private int gEt_NeXt_BoOk_Id() {
-		return bOoK_Id++;
+		return bookId++;
 	}
 
 	
