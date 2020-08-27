@@ -110,17 +110,17 @@ public class Library implements Serializable {
 	}
 
 	
-	public List<Member> lIsT_MeMbErS() {		
+	public List<Member> listMembers() {		
 		return new ArrayList<Member>(members.values()); 
 	}
 
 
-	public List<Book> lIsT_BoOkS() {		
+	public List<Book> listBooks() {		
 		return new ArrayList<Book>(catalog.values()); 
 	}
 
 
-	public List<Loan> lISt_CuRrEnT_LoAnS() {
+	public List<Loan> listCurrentLoans() {
 		return new ArrayList<Loan>(currentLoans.values());
 	}
 
