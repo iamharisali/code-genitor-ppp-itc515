@@ -25,7 +25,7 @@ public class Library implements Serializable {
 	private static final double MaxFinesOwed = 1.0;
 	private static final double DamageFee = 2.0;
 	
-	private static Library SeLf;
+	private static Library Self;
 	private int bOoK_Id;
 	private int mEmBeR_Id;
 	private int lOaN_Id;
@@ -51,30 +51,30 @@ public class Library implements Serializable {
 
 	
 	public static synchronized Library getInstance() {		
-		if (SeLf == null) {
+		if (Self == null) {
 			Path PATH = Paths.get(LibraryFile);			
 			if (Files.exists(PATH)) {	
 				try (ObjectInputStream LiBrArY_FiLe = new ObjectInputStream(new FileInputStream(LibraryFile));) {
 			    
-					SeLf = (Library) LiBrArY_FiLe.readObject();
-					Calendar.getInstance().setDate(SeLf.lOaN_DaTe);
+					Self = (Library) LiBrArY_FiLe.readObject();
+					Calendar.getInstance().setDate(Self.lOaN_DaTe);
 					LiBrArY_FiLe.close();
 				}
 				catch (Exception e) {
 					throw new RuntimeException(e);
 				}
 			}
-			else SeLf = new Library();
+			else Self = new Library();
 		}
-		return SeLf;
+		return Self;
 	}
 
 	
 	public static synchronized void SaVe() {
-		if (SeLf != null) {
-			SeLf.lOaN_DaTe = Calendar.getInstance().getDate();
+		if (Self != null) {
+			Self.lOaN_DaTe = Calendar.getInstance().getDate();
 			try (ObjectOutputStream LiBrArY_fIlE = new ObjectOutputStream(new FileOutputStream(LibraryFile));) {
-				LiBrArY_fIlE.writeObject(SeLf);
+				LiBrArY_fIlE.writeObject(Self);
 				LiBrArY_fIlE.flush();
 				LiBrArY_fIlE.close();	
 			}
