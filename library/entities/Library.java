@@ -153,12 +153,12 @@ public class Library implements Serializable {
 	}
 
 	
-	public int gEt_LoAn_LiMiT() {
+	public int getLoanLimit() {
 		return LoanLimit;
 	}
 
 	
-	public boolean cAn_MeMbEr_BoRrOw(Member member) {		
+	public boolean canMemberBorrow(Member member) {		
 		if (member.getNumberOfCurrentLoans() == LoanLimit ) 
 			return false;
 				
