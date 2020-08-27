@@ -199,8 +199,8 @@ public class Library implements Serializable {
 	
 	public double calculateOverdueFines(Loan LoAn) {
 		if (LoAn.isOverDue()) {
-			long DaYs_OvEr_DuE = Calendar.getInstance().getDaysDifference(LoAn.GeT_DuE_DaTe());
-			double fInE = DaYs_OvEr_DuE * FinePerDay;
+			long daysOverDue = Calendar.getInstance().getDaysDifference(LoAn.getDueDate());
+			double fInE = daysOverDue * FinePerDay;
 			return fInE;
 		}
 		return 0.0;		
