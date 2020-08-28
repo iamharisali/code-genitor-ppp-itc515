@@ -2,6 +2,15 @@ package library.payfine;
 
 import java.util.Scanner;
 
+///////////////////////////////////////////////////////////////////////////////
+//                   
+// Subject:          Professional Programming Practice 
+// @author:          Abhimanyu Bhat
+// Email:            abhimanyubhat4296@gmail.com
+// Lecturer's Name:  Recep Ulusoy
+//
+//////////////////// PAIR PROGRAMMERS COMPLETE THIS SECTION ////////////////////
+
 public class PayFineUi {
 
 	public static enum UiState {
