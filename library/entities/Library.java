@@ -214,7 +214,7 @@ public class Library implements Serializable {
 		double overDueFIne = calculateOverdueFines(currentLoan);
 		member.addFine(overDueFIne);	
 		
-		member.dischargeLoan(currentLoan);
+		member.disChargeLoan(currentLoan);
 		book.returnState(isDamaged);
 		if (isDamaged) {
 			member.addFine(DamageFee);
