@@ -3,6 +3,15 @@ package library.payfine;
 import library.entities.Library;
 import library.entities.Member;
 
+///////////////////////////////////////////////////////////////////////////////
+//                   
+// Subject:          Professional Programming Practice 
+// @author:          Abhimanyu Bhat
+// Email:            abhimanyubhat4296@gmail.com
+// Lecturer's Name:  Recep Ulusoy
+//
+//////////////////// PAIR PROGRAMMERS COMPLETE THIS SECTION ////////////////////
+
 public class PayFineControl {
 
 	private PayFineUi ui;
@@ -13,11 +22,11 @@ public class PayFineControl {
 
 	private ControlState state;
 
-	private Library LiBrArY;
+	private Library library;
 	private Member member;
 
 	public PayFineControl() {
-		this.LiBrArY = Library.GeTiNsTaNcE();
+		this.library = Library.getInstance();
 		state = ControlState.INITIALISED;
 	}
 
@@ -30,11 +39,11 @@ public class PayFineControl {
 		state = ControlState.READY;
 	}
 
-	public void CardSwiped(int memberId) {
+	public void cardSwiped(int memberId) {
 		if (!state.equals(ControlState.READY))
 			throw new RuntimeException("PayFineControl: cannot call cardSwiped except in READY state");
 
-		member = LiBrArY.getMember(memberId);
+		member = library.getMember(memberId);
 
 		if (member == null) {
 			ui.display("Invalid Member Id");
@@ -45,23 +54,23 @@ public class PayFineControl {
 		state = ControlState.PAYING;
 	}
 
-	public void Cancel() {
+	public void cancel() {
 		ui.setState(PayFineUi.UiState.CANCELLED);
 		state = ControlState.CANCELLED;
 	}
 
-	public double payFine(double AmOuNt) {
+	public double payFine(double amount) {
 		if (!state.equals(ControlState.PAYING))
 			throw new RuntimeException("PayFineControl: cannot call payFine except in PAYING state");
 
-		double ChAnGe = member.payFine(AmOuNt);
-		if (ChAnGe > 0)
-			ui.display(String.format("Change: $%.2f", ChAnGe));
+		double change = member.payFine(amount);
+		if (change > 0)
+			ui.display(String.format("Change: $%.2f", change));
 
 		ui.display(member.toString());
 		ui.setState(PayFineUi.UiState.COMPLETED);
 		state = ControlState.COMPLETED;
-		return ChAnGe;
+		return change;
 	}
 
 }
