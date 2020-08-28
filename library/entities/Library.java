@@ -215,7 +215,7 @@ public class Library implements Serializable {
 		member.addFine(overDueFIne);	
 		
 		member.dischargeLoan(currentLoan);
-		book.bookReturn(isDamaged);
+		book.returnState(isDamaged);
 		if (isDamaged) {
 			member.addFine(DamageFee);
 			damagedBooks.put(book.getId(), book);
@@ -227,7 +227,7 @@ public class Library implements Serializable {
 
 	public void checkCurrentLoans() {
 		for (Loan loan : currentLoans.values()) 
-			loan.cHeCk_OvEr_DuE();
+			loan.checkOverDue();
 				
 	}
 
