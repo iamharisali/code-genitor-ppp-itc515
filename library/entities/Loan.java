@@ -25,22 +25,22 @@ public class Loan implements Serializable {
 		this.state = LoanState.CURRENT;
 	}
 
-	public void cHeCk_OvEr_DuE() {
+	public void checkOverDue() {
 		if (state == LoanState.CURRENT && Calendar.getInstance().getDate().after(date)) {
 			this.state = LoanState.OVER_DUE;
 		}
 
 	}
 
-	public boolean Is_OvEr_DuE() {
+	public boolean isOverDue() {
 		return state == LoanState.OVER_DUE;
 	}
 
-	public Integer GeT_Id() {
+	public Integer getId() {
 		return loanId;
 	}
 
-	public Date GeT_DuE_DaTe() {
+	public Date getDueDate() {
 		return date;
 	}
 
@@ -55,15 +55,15 @@ public class Loan implements Serializable {
 		return sb.toString();
 	}
 
-	public Member GeT_MeMbEr() {
+	public Member getMember() {
 		return member;
 	}
 
-	public Book GeT_BoOk() {
+	public Book getBook() {
 		return book;
 	}
 
-	public void DiScHaRgE() {
+	public void discharge() {
 		state = LoanState.DISCHARGED;
 	}
 
