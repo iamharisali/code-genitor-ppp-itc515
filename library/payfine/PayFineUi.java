@@ -47,7 +47,7 @@ public class PayFineUi {
 					}
 					try {
 						int memberId = Integer.valueOf(Mem_Str).intValue();
-						control.CardSwiped(memberId);
+						control.cardSwiped(memberId);
 					} catch (NumberFormatException e) {
 						output("Invalid memberId");
 					}
