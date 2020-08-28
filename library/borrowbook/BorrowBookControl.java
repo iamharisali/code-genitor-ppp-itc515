@@ -41,12 +41,12 @@ public class BorrowBookControl {
 		if (!state.equals(ControlState.READY)) 
 			throw new RuntimeException("BorrowBookControl: cannot call cardSwiped except in READY state");
 			
-		member = library.gEt_MeMbEr(memberId);
+		member = library.getMember(memberId);
 		if (member == null) {
 			ui.display("Invalid memberId");
 			return;
 		}
-		if (library.cAn_MeMbEr_BoRrOw(member)) {
+		if (library.canMemberBorrow(member)) {
 			pendingList = new ArrayList<>();
 			ui.setState(BorrowBookUI.UiState.SCANNING);
 			state = ControlState.SCANNING; 
@@ -76,7 +76,7 @@ public class BorrowBookControl {
 		for (Book B : pendingList) 
 			ui.display(B.toString());
 		
-		if (library.gEt_NuMbEr_Of_LoAnS_ReMaInInG_FoR_MeMbEr(member) - pendingList.size() == 0) {
+		if (library.getNumberOfLoansRemainingForMember(member) - pendingList.size() == 0) {
 			ui.display("Loan limit reached");
 			complete();
 		}
@@ -104,7 +104,7 @@ public class BorrowBookControl {
 			throw new RuntimeException("BorrowBookControl: cannot call commitLoans except in FINALISING state");
 			
 		for (Book book : pendingList) {
-			Loan loan = library.iSsUe_LoAn(book, member);
+			Loan loan = library.issueLoan(book, member);
 			completedList.add(loan);			
 		}
 		ui.display("Completed Loan Slip");
