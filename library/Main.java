@@ -137,7 +137,7 @@ public class Main {
 	}	
 
 	private static void PAY_FINES() {
-		new PayFineUi(new PayFineControl()).Run();	
+		new PayFineUi(new PayFineControl()).run();	
 	}
 
 
