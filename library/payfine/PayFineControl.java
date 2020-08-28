@@ -22,11 +22,11 @@ public class PayFineControl {
 
 	private ControlState state;
 
-	private Library LiBrArY;
+	private Library library;
 	private Member member;
 
 	public PayFineControl() {
-		this.LiBrArY = Library.getInstance();
+		this.library = Library.getInstance();
 		state = ControlState.INITIALISED;
 	}
 
@@ -39,11 +39,11 @@ public class PayFineControl {
 		state = ControlState.READY;
 	}
 
-	public void CardSwiped(int memberId) {
+	public void cardSwiped(int memberId) {
 		if (!state.equals(ControlState.READY))
 			throw new RuntimeException("PayFineControl: cannot call cardSwiped except in READY state");
 
-		member = LiBrArY.getMember(memberId);
+		member = library.getMember(memberId);
 
 		if (member == null) {
 			ui.display("Invalid Member Id");
@@ -54,7 +54,7 @@ public class PayFineControl {
 		state = ControlState.PAYING;
 	}
 
-	public void Cancel() {
+	public void cancel() {
 		ui.setState(PayFineUi.UiState.CANCELLED);
 		state = ControlState.CANCELLED;
 	}
@@ -63,9 +63,9 @@ public class PayFineControl {
 		if (!state.equals(ControlState.PAYING))
 			throw new RuntimeException("PayFineControl: cannot call payFine except in PAYING state");
 
-		double ChAnGe = member.PaY_FiNe(AmOuNt);
-		if (ChAnGe > 0)
-			ui.display(String.format("Change: $%.2f", ChAnGe));
+		double change = member.payFine(amount);
+		if (change > 0)
+			ui.display(String.format("Change: $%.2f", change));
 
 		ui.display(member.toString());
 		ui.setState(PayFineUi.UiState.COMPLETED);
