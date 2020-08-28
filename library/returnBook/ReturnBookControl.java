@@ -49,7 +49,7 @@ public class ReturnBookControl {
 			returnBookUi.display("Invalid Book Id");
 			return;
 		}
-		if (!currentBook.iS_On_LoAn()) {
+		if (!currentBook.inOnLoan()) {
 			returnBookUi.display("Book has not been borrowed");
 			return;
 		}		
